@@ -1,0 +1,179 @@
+Kolos 2014   g.17:15
+
+
+Zad 1.
+Dana jest niepusta kolejka K oraz dwa stosy S1 i S2. Napisz pseudokod algorytmu przenoszącego elementy z kolejki K do stosów S1 i S2 (elementy większe lub równe 0 należy umieścić na stosie S1, a pozostałe
+elementy na stosie 52). Podaj implementację wykorzystywanych operacji na stosie i kolejce.
+
+
+Zad(Q,Q.head)
+    S1.top=0
+    S2.top=0
+    while not QUEUE_EMPTY(Q) do
+        x=DEQUEUE(Q)
+        if x>=0 then
+            PUSH(S1, x)
+        else
+            PUSH(S2,x)
+return
+
+
+PUSH(S,x)
+    S.top=S.top+1
+    S[S.top]=x
+    return
+
+QUEUE-EMPTY(Q)
+    if Q.head==Q.tail then
+        return true
+    else
+         return false
+
+DEQUEUE(Q)
+    x=Q[Q.head]
+    if     Q.head==n then
+        Q.head=1
+    else     
+        Q.head=Q.head+1
+
+
+Zad 2.
+Napisz pseudokod procedury USUŃ-Z-POZYCJI(L,i), która usunie i-ty element od początku z listy jednokierunkowej L, jeśli lista L ma mniej niż i elementów to procedura usunie ostatni element na liście.
+
+function USUŃ-Z-POZYCJI(L, i)
+    if L.head == NIL
+        write “Błąd”
+        return -1
+
+    count=0
+    x = L.head
+    while x <> NIL do             // x.next nigdy nie piszemy w while?
+        if (x.next == NIL)  AND  ( count < i )
+        LIST_DELETE(L,x)
+        return
+    count=count+1
+        if count == i
+        LIST_DELETE(L,x)
+        return
+       x = x.next
+       
+2.1. Napisz procedurę LIST_INSERT(L,x,k), która wstawia do listy L element x jako k-ty
+proc_LIST_INSERT(L,x,k),
+	counter = 0
+	o = L.head
+	while o <> NIL do
+		if counter == k
+			then o.key = x
+		counter = counter + 1
+		o = o.next
+	return
+
+2.2. Napisz inną postać procedury LIST_INSERT(L,x), która wstawia element x na koniec listy L.
+proc_LIST_INSERT(L,x)
+	counter = L.head
+	while counter <> NIL do
+		counter = counter.next
+		
+	counter.key = x
+	counter.next = NIL
+    
+	return
+   
+LIST-DELETE(L,x) 
+ 
+If x == L.head 
+L.head = x.next 
+Else 
+Y = L.head 
+While Y.next != x 
+Y = Y.next 
+Y.next = x.next 
+return
+
+
+
+ZAD3.
+Napisz pseudokod algorytmu obliczającego sumę wartości wszystkich liści w drzewie binarnym T.
+        	                 34
+		                 /         \
+              42                  			58
+            /     \              		/     \
+    	   70      72               68       		 66
+  	  /     \     /     \          /     \       /    \
+	nil     nil   nil  nil      nil    nil   nil    nil
+
+
+function LIST (T)
+    leaf = 0
+    return SZUK_LISC(T, leaf)
+
+function SZUK_LISC(T, leaf)
+    x=T.root
+        
+   if x <> NIL  
+     if (x.left == NIL) AND (x.right == NIL) then
+            leaf = leaf + x.key
+
+        SZUK_LISC(x.left, leaf)
+     SZUK_LISC(x.right,leaf)
+    return leaf
+
+
+zad 4
+Napisz pseudokod procedury INCREASE(K, x), która zwiększy o liczbę x > 0 wartość najmniejszego elementu n-elementowego kopca K typu MIN oraz przywróci własność kopca w K.
+
+function INCREASE (K,x)
+    if x<1
+        write “Błąd”
+        return -1
+
+    min=K[1]
+    min.key=min.key+x
+    i = 1
+    MIN_HEAPIFY (K, i)
+    return
+
+
+MIN_HEAPIFY (A, i)
+    left = 2*i
+    right = 2*i + 1
+    if (left <= A.heap-size) and (A[left] < A[i])
+    then largest = left
+    else largest = i
+    if (right <= A.heap-size) and (A[right] < A[largest])
+    then largest = right
+    if largest <> i
+    then A[i] <-> A[largest]
+     MIN_HEAPIFY(A, largest)
+    return
+
+
+
+
+ZAD 5.
+Dane jest drzewo BST o nazwie T, które z założenia ma co najmniej trzy węzły i wsz
+drzewa mają różne wartości w polach kluczy. Napisz procedurę, która obliczy sumę trech najmniejszych
+elementów drzewa T. Podaj wywołanie tej procedury. Podaj implementację wykorzyst. operacj na drzewie BST.
+
+function TREE_MINIMUM(x)
+while x.left <> NIL do
+    x = x.left
+return x
+
+function TREE_SUCCESOR(x) //szuka następny największy element
+if x.right <> NIL then
+    return TREE_MINIMUM(x.right)
+y = x.p
+while y <> NIL and x == y.right do
+    x = y
+    y = y.p
+return y
+
+function ZAD5(T)
+min1 = TREE_MINIMUM(T.root)
+min2 = TREE_SUCCESOR(min1)
+min3 = TREE_SUCCESOR(min2)
+
+return min1 + min2 + min3
+
+
