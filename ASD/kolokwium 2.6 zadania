@@ -1,0 +1,138 @@
+1. (4 pkt.) Dana jest niepusta kolejka Q. Wykorzystując stós S umiesć w nowej
+kolejce R wszystkie elementy z kolejki Q w odwromej kolejności w stosunku do
+tej, w której występowały one w kolejce 
+
+ZAD1(Q, Q.head, Q.tail) //rozwiazanie 1
+S.top=0
+R.head=R.tail=1
+while not QUEUE_EMPTY(Q) do
+    x=DEQUEUE(Q)
+    PUSH(S, x)
+while not STACK_EMPTY(S) do
+    x=POP(S)
+    ENQUEUE(R, x)
+return
+
+2. (5 pkt.) Dana jest niepusta, dwukierunkowa lista L. w której mogą występować
+elementy z takimi samymi wartościami pola klucza, jak w innych elementach
+Podaj pseudokod algorytmu usuwającego z tej listy te olementw. W kowych
+wartość pola klucza powtarza się drugi, trzeci, ..., kolejny raz
+
+USUWANIE(L)
+x=L.head
+while x.next<>NIL do
+    y=x.next
+    el=x.key
+    while y.next<>NIL do
+        if y.key==el then
+            el_del=y
+            LIST_DELETE(L, el_del)
+        y=y.next
+    x=x.next
+return
+
+
+3. (4 pkt.) Dane jest drzewo binarne T. Podaj pseudokod funkcji (rekurecyjnej lub
+iteracyjnej), znajdującej ilość węzłów w tym drzewie, które posiada tylko
+jednego syna (nie jest istotne którego, lewego, tzy prawego)
+
+function ZNALEZ(T)
+if T.root == NIL
+	write "Błąd. Drzewo jest pustym"
+	return -1
+	
+liczylnyk = 0
+return count(T, liczylnyk)
+
+
+function function count(T, temp)
+x = T.root
+while x <> NIL do
+	function count(x.left, temp)
+	if (x.left <> NIL and x.right == NIL) or (x.left == NIL and x.right <> NIL)
+		then temp = temp + 1
+	function count(x.right, temp)
+
+return temp
+
+3.1. Dane jest niepuste drzewo binarne T. Napisz pseudokod funkcji znajdując. liczby takich węzłów, które mają lewe podrzewo. jednocześnie, nie mają prawego podrzewa.
+Podaj postać wywolania tej funkcji
+
+SZUKAJ(T) 
+count = 0
+return ZAD3(T, count)
+
+function ZAD3(T, ile)
+p = T.root
+if p <> NIL then
+    if (p.left <> NIL) AND (p.right == NIL) then
+        ile = ile + 1    
+    ZAD3(p.left, ile)
+    ZAD3(p.right, ile)
+return ile
+
+4. Dana jest tablica K liczb całkowitych, tworząca kopiec typu max, podaj
+pseudokod procedury ZWIEKSZ (K, i, x), która zwiększy wartość i-tego
+elementu w kopcu o wartość x>0, a następnie przywróci w lasność kopca typu max.
+
+
+ZWIEKSZ(K, i, x)
+if A.heap-size < 1 then
+		then write "Kopiec pusty"
+		return -1
+		
+if x > 0 then
+		then write "Błąd"
+		return -1
+
+K[i] = K[i] + x
+BUILD_MAX_HEAP(K)
+
+
+ZWIEKSZ(K, i, x)
+K[i]=K[i]+x
+while i>1 and A [floor(i/2)] >  A[i] do
+    A[ i ] <-> A[floor(i/2)]
+    i=floor(i/2)
+return 
+
+
+
+5. (5 pkt.) Dane jest drzewo BST o nazwie T, które ma co najmiej dwa węzły.
+Podaj pseudokod procedury usuwającej z tego drzewa węzeł o najwięksym kluczu
+
+
+
+procedure USUN_MAX(T)
+    x = TREE_MAX(T)
+	TREE-DELETE(T, x)	
+	return
+
+TREE_MAX(x)
+    while x.next <> NIL
+        x=x.next
+    return x
+
+TREE-DELETE(T, z)
+	if z.left == NIL or z.right == NIL
+		then y = z 
+	else y = TREE-SUCCESSOR(z)
+	
+	if y.left <> NIL
+		then x = y.left
+	else x = y.right
+	
+	if x <> NIL
+		then x.p = y.p
+	
+	if y.p == NIL
+		then T.root = x
+	else if y == y.p.left
+		then y.p.left = x
+	else y.p.right = x
+	
+	if y <> z
+		then z.key = y.key
+	copy the data of y to z
+
+
