@@ -1,0 +1,88 @@
+1. Dany jest stos S zawierająca co najmniej 5 liczb oraz dwie kolejki Q1 i Q2. Napisz pseudokod algorytmu pszenoszącego 5 pierwszych (licząc od wierzchołka) elementów stosu S do kolejki Q1, a pozostałe elementy stosu S do kolejki Q2. Podaj implementację tablicową wykorzystywanych operacji na stosie i kolejce. Można pominąć sprawdzanie blędów przepełnienia i niedomiaru. 
+
+	procedure PUSH(S,x)
+	S.top = S.top + 1
+	S[S.top] = x
+	return
+
+	procedure ENQUEUE(Q,x)
+		
+	if Q.head == Q.tail + 1 then
+		  write "Błąd"
+		  return -1
+
+	else
+		Q[Q.tail] = x
+		if Q.tail == Q.length
+		then Q.tail = 1
+		else Q.tail = Q.tail + 1
+		return
+		
+	funkcja_POP(S)
+	if STACK_EMPTY
+		write "Błąd"
+		return -1
+	else
+		S.top - 1
+		return S[S.top+1]
+
+
+	procedure TRANSFER(S, S.top)
+	
+	Q1.head == 1
+	Q1.tail == 1
+	
+	Q2.head == 1
+	Q2.tail == 1
+	
+		for i = 1 to 5 do
+			x = POP(S)
+			ENQUEUE(Q1, x)
+		while not (STACK_EMPTY(S)) do
+			x = POP(S)
+			ENQUEUE(Q2, x)
+
+2. Dana jest lista dwukierunkowa L, której elementy mają klucze rzeczywiste. Napisz algorytm obliczający sumę kluczy występujących na  nieparzystych pozycjach w tej liście (numeracja od 1)
+
+	function ILOSC_NIEPARZ_IND(L)
+	if L.head == NIL
+		write "Blad"
+		return -1
+	x = L.head
+	sum = x.key
+	while x <> NIL do
+		sum = sum + x.key
+		x = x.next
+		x = x.next
+	return sum
+	
+
+
+3. Napisz pseudokod procedury POWIEKSZ/INCREASE(A,i,x), króra zwiększy o liczbę x>0 wartość i-tego elementu kopca A typu MAX oraz przywróci własność kopca w A. Podaj implementacje wykorzystywanych operacji na kopcu.
+
+	procedure POWIEKSZ(A,i,x)
+	if key < A[i]
+		then error
+	A[i] = key
+		while i > 0 and A[PARENT(i)] < A[i]
+			do A[i] ↔ A[PARENT(i)]
+			i = PARENT(i)
+		 	
+
+4. Napisz algorytm obliczający dla danego drzewa binarnego T liczbę jego węzłów wewnętrznych (czyli tę, który posiada co najmniej 1 syna). 
+	
+	function OBLICZ_WEWN_WEZ(T, x)
+	count = 0
+	if(x.left <> NIL) or (x.right <> NIL) then
+		count = count + 1
+	OBLICZ_WEWN_WEZ(T, x.left)
+	OBLICZ_WEWN_WEZ(T, x.right)
+	return count
+
+5. Dane jest drzewo BST o nazwie T, które ma co najmniej dwa węzly. Wszystkie węzly tego drzewa mają różne wartości w polach kluczy. Napisz algorytm usuwający z drzewa T element o największym kluczu. Podaj implementacje wykorzystywanych operacji na drzewie BST. 
+
+		procedure USUN_NAJW_EL(T)
+		x = T.root
+		while (x.right <> NIL) do
+			x = x.right
+		x = NIL
