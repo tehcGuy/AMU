@@ -1,0 +1,82 @@
+1. Dana jest kolejka Q zawierająca pewne liczby całkowite oraz dwa stosy, S1 i S2. Napisz pseudokod algorytmu pszenoszącego wszystkie parzyste elementy z kolejki Q do stosu S1, a wszystkie elementy nieparzyste do stosu S2. Podaj implementację tablicową wykorzystywanych operacji na stosie i kolejce. Można pominąć sprawdzanie blędów przepełnienia i niedomiaru. 
+
+	procedure PUSH(S,x)
+	S.top = S.top + 1
+	S[S.top] = x
+	return
+
+	procedure DEQUEUE(Q)
+	x = Q[Q.head]
+	if Q.head == Q.length
+		then Q.tail = 1
+	else Q.head = Q.head + 1
+	return x
+
+
+	procedure TRANSFER(Q, Q.head, S1,S2)
+	S1.top = 0
+	S2.top = 0
+
+	while not (Q.head == 0) do
+		x = DEQUEUE(Q)
+		if ((x mod 2) == 0)  then
+			PUSH(S1, x)
+		else if ((x mod 2) <> 0)  then
+			PUSH(S2, x)
+			
+
+				
+2. Dana jest lista dwukierunkowa L, której elementy mają klucze rzeczywiste. Napisz algorytm obliczający liczbę ujemnych kluczy występujących w tej liście. 
+
+	function ILOSC_UJEMNYCH(L)
+	if L.head == NIL
+		write "Blad"
+		return -1
+	counter = 0
+	x = L.head
+	while x <> NIL do
+		if (x.key < 0)
+			counter = counter + 1
+		x = x.next
+	return counter
+	
+	
+
+
+
+3. Napisz pseudokod procedury DECREASE(A,i,x), króra zmniejszy o liczbę x>0 wartość i-tego elementu kopca A typu MAX oraz przywróci własność kopca w A. Podaj implementacje wykorzystywanych operacji na kopcu. 
+
+	DECREASE-KEY(A,i,x) //wybieramy jaki indeks i o ile zmieszyc
+	if x > A[i]
+		then write "Blad"
+		return -1
+	A[i] = key
+		while (i > 0) and (A[floor(i/2)] < A[i]) do
+			A[i] <-> A[floor(i/2)]
+			i = floor(i/2)
+	return
+
+
+nieprawidwoło
+4. Napisz algorytm obliczający dla danego drzewa binarnego T liczbę jego węzłów posiadających tylko lewego syna. 
+
+	function ILOSC_LEW_SYN(T, x)
+	count = 0
+	if (x.right == NIL) and (x.left <> NIL) then
+		count = count + 1
+		ILOSC_LEW_SYN(T, x.left)
+		ILOSC_LEW_SYN(T, x.right)
+	return count
+	
+
+
+5. Dane jest drzewo BST o nazwie T, które ma co najmniej dwa węzly. Wszystkie węzly tego drzewa mają różne wartości w polach kluczy. Napisz algorytm usuwający z drzewa T element o najmniejszym kluczu. Podaj implementacje wykorzystywanych operacji na drzewie BST. 
+
+	procedure USUN_NAJM_EL(T)
+	x = T.root
+	while (x.left <> NIL) do
+		x = x.left
+	x = NIL
+
+
+6. Dana jest tablica H [0...6] oraz ciąg kluczy (8,1,1 2,3,5). a) Zilustruj wstawianie powyższych kluczy do tablicy H przy użyciu funkcji haszującej h(k)= k mod 7 i rozwiązywanie kolizji metodą łańcuchową b) Zilustruj wstawianie powyższych kluczy do tab. H przy użyciu haszowania dwukrotnego z pomocniczymi funkcjami haszującymi h1(k)=k mod7 i h2(k)=1+(k mod 6) 
