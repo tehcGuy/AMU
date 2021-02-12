@@ -1,0 +1,144 @@
+> 1. Dany jest stos S zawierająca liczby całkowite. Napisać pseudokod algorytmu który przeniesie wszystkie elementy stosu S do tablicy A, dowolną metodą posortuje malojącego, a następnie przeniesie je do kolejki Q. (UWAGA, nie odwołujemy się do tablicowej implementacji stosu ani kolejki oraz zakładamy że taka tablica A jest wystarczająco duża by pomieścić wszystkie elementy stosu S)
+```
+
+procedure PRZENIES(S,S.top)
+    if STACK_EMPTY(S)
+        write “Błąd”
+        return -1
+    n=S.top
+A[1..n]
+    while not STACK_EMPTY(S) do
+        x = POP(S)
+        A[S.top+1]=x
+    for i=1 to n do //descending
+                for j=i+1 to n do
+            if A[j] < A[j + 1]
+               temp = A[j]
+           A[j] = A[j + 1]
+               A[j + 1] = temp
+           
+    for i=1 to n
+       do ENQUEUE(Q,A[i])
+    return
+```
+> 2. Dana jest lista dwukierunkowa L (być może pusta) zawierająca liczby całkowite dodatnie. Napisać pseudokod procedury tworzącej z tej listy dwie nowe listy: jedną zawier elementy o niezerowych kluczacj nie parzystych, oraz drugą, zawier. elementy o kluczach parzystych procedure DWIE_LISTY(L)
+```
+        if L.head == NIL
+            write "Blad"
+            return -1
+        x = L.head
+                
+        while x <> NIL do
+        (x.key mod 2 !=  0) AND  (if x.key  > 0) then
+                LIST_INSERT(L1,x)  
+else if
+  x.key mod 2 == 0 
+             LIST_INSERT(L2,x)  
+            x = x.next
+        return
+```
+> 3. Dane jest drzewo BST o nazwie T zawierające co najmniej 2 węzły. Napisać pseudokod funkcji obliczającej sumę w_1 * a_1 + w_2 * a_2. gdzie a_1 oraz a_2 to (odpowiednio) klucz poprzednika węzła zawierającego najmniejszy klucz oraz poprzednika węzła zawier. najw klucz w tym drzewie, natomiast w_1 oraz w_2 to (odpowiednio) długość ścieżki  łączącej korzeń z węzłu przechowującym najmn klucz oraz długość ścieżki łączego korzeń z węzłem przechowującym najw klucz 
+```
+w_1 * a_1 + w_2 * a_2
+
+function 2ND_MIN(T, T.root)
+    a_1 = T.root
+    w_1 = 0
+    while  a_1.left <> NIL do
+        a_1 = a_1.left
+     w_1 =  w_1 +1
+    a_1 =  a_1.p.left
+   
+
+
+    w_2 = 0
+    while a_2.right <> NIL do
+         a_2 = a_2.right
+      w_2  =   w_2  + 1
+    a_1 =  a_1.p.right
+    return (w_1 * a_1) + (w_2 * a_2)
+```
+> 4. Dana jest tablica A =  [34, 42, 58, 70, 72, 68, 66, 54, 56, 32, 22]
+Zilustruj za pomocą  rysunków budowanie kopca typu max z elementów tej tablicy
+```
+BUILD_MAX_HEAP (A)
+    A.heap-size = A.length
+    for i = floor(A.length/2) downto 1 
+    do MAX_HEAPIFY(A, i)
+    return
+
+             	 1:34
+        	/			    \
+        2:42			 	 3:58
+        /      \			  /     \
+    4:70       5:72	       6:68	    7:66
+ 	 /	 \	   /    \	  	 
+ 8:54  9:56 10:32  11:22 
+ 
+ 
+zaczynamy z indeksa 5 to 1
+ 
+             	 1:34
+        	/			    \
+        2:42			 	 3:58
+        /      \			  /     \
+    4:70       5:72	       6:68	    7:66
+ 	 /	 \	   /    \	  	 
+ 8:54  9:56 10:32  11:22 
+ 
+5:
+
+             	 1:34
+        	/			    \
+        2:42			 	 3:58
+        /      \			  /     \
+    4:70       5:72	       6:68	    7:66
+ 	 /	 \	   /    \	  	 
+ 8:54  9:56 10:32  11:22 
+ 
+ 
+4:
+             	 1:34
+        	/			    \
+        2:42			 	 3:58
+        /      \			  /     \
+    4:70       5:72	       6:68	    7:66
+ 	 /	 \	   /    \	  	 
+ 8:54  9:56 10:32  11:22 
+ 
+ 
+3:
+             	 1:34
+        	/			      \
+        2:42			 	 3:68
+        /      \			  /     \
+    4:70       5:72	       6:58	    7:66
+ 	 /	 \	   /    \	  	 
+ 8:54  9:56 10:32  11:22 
+ 
+2:
+             	 1:34
+        	/			    \
+        2:72			 	 3:68
+        /      \			  /     \
+    4:70       5:42	       6:58	    7:66
+ 	 /	 \	   /    \	  	 
+ 8:54  9:56 10:32  11:22 
+ 
+1:
+             	 1:72
+        	/			    \
+        2:70			 	 3:68
+        /      \			  /     \
+    4:56       5:42	       6:58	    7:66
+ 	 /	 \	   /    \	  	 
+ 8:54  9:34 10:32  11:22 
+ ```
+ 
+5. Wypisz elementy drzewa odpowiadającego kopcowi otrzymanego jako powiązanie zadania 4, wypisując przechodzenia tego drzewa metodą INORDER, POSTORDER, PREORDER
+```
+
+INORDER:	54,56,34,70,32,42,22,72,58,68,66
+PREORDER:	72,70,56,54,34,42,32,22,68,58,66
+POSTORDER:	54,34,56,32,22,42,70,58,66,68,72
+```
